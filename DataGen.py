@@ -56,11 +56,6 @@ class ClassDataGenerator(keras.utils.Sequence):
             im_fn= ID
             lb_fn= ID[:-4]+'_label.mat'
 
-            if ID[3] is '_':
-                lge_seq_type = 1  # magnitude LGE
-            else:
-                lge_seq_type = 2  # phase LGE
-
             dd = sio.loadmat(os.path.join(data_dir,lb_fn), mat_dtype=True)
             lbvol = dd['tmp_vol_im']
             tmp = np.zeros((self.dim[0],self.dim[0],lbvol.shape[-2],lbvol.shape[-1]))
