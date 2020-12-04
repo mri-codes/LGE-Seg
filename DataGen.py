@@ -95,7 +95,7 @@ class ClassDataGenerator(keras.utils.Sequence):
                 tmp = np.squeeze(lbvol[:, :, 0, idx])  # 2D slice; 3rd dim is dummy
                 if np.any(np.isnan(tmp)) or np.any(tmp < 0):
                     tmp = np.zeros(tmp.shape, dtype=tmp.dtype)
-                    SkipSliceFlag[-1] = 1
+
                 tmp_split = keras.utils.to_categorical(tmp, num_classes=hparams.num_tissues)  # num tissues = 4
                 Y.append(tmp_split)
 
