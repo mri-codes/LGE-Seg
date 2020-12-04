@@ -36,6 +36,9 @@ class ClassDataGenerator(keras.utils.Sequence):
         # Generate data
         X, Y = self.__data_generation(fn_list_temp, self.data_dir)
         X, Y = augment_data(X,Y)
+        
+        return X, Y
+        
 
     def on_epoch_end(self):
         'Updates indexes after each epoch'
