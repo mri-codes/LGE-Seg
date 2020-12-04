@@ -4,7 +4,7 @@ import scipy.misc as smsc
 import scipy.ndimage
 import os
 import keras
-import krs_hyperparams as hp
+import hyperparams as hp
 hparams = hp.create_hparams()
 
 def load_validation_data(fn_list, data_dir, im_size=(160,160),n_channels=2,n_classes=4):
