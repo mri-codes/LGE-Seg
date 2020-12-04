@@ -14,10 +14,10 @@ hparams = hp.create_hparams()
 
 if hparams.volume_depth is 2:
     print('LGE-CINE FUSION is ON ')
-    from krs_model2d import unet_2d_shalow as umodel
+    from models import unet_2d_shalow as umodel
 else:
     print('LGE-CINE Fusion is OFF-- Optimized Baseline Model')
-    from krs_model2d import unet_2d_shalow_baseline as umodel
+    from models import unet_2d_shalow_baseline as umodel
 
 # Set data input path # Get list of image files
 label_identifier = 'label'
@@ -43,12 +43,12 @@ while pat < len(test_image_fnlist):
                                 n_channels=hparams.volume_depth, n_classes=hparams.num_tissues)
     vol_gt = testY
     vol_in = testX
-    vol_prd = model.predict(rot_testX)
+    vol_prd = model.predict(testX)
 
     pat_fn = test_image_fnlist[pat]
-    if hparams.attn_type is 'NONE':
-        sio.savemat(results_dir_base + '/P-'+str(pat)+'_' +pat_fn + '_img_pred_gt.mat',
-                {"vol_in": vol_in, "vol_gt": vol_gt, "vol_prd": vol_prd})
+    
+    sio.savemat(results_dir_base + '/P-'+str(pat)+'_' +pat_fn + '_img_pred_gt.mat',
+           {"vol_in": vol_in, "vol_gt": vol_gt, "vol_prd": vol_prd})
 
     print("--- %s seconds ---" % ((time.time() - start_time)/np.size(vol_in,axis=0)))
     print("--- %s num slices ---" % (np.size(vol_in, axis=0)))
