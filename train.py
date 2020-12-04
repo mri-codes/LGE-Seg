@@ -9,10 +9,10 @@ hparams = hp.create_hparams()
 
 if hparams.volume_depth is 2:
     print('LGE-CINE FUSION is ON ')
-    from krs_model2d import unet_2d_shalow as umodel
+    from models import unet_2d_shalow as umodel
 else:
     print('LGE-CINE Fusion is OFF-- Optimized Baseline Model')
-    from krs_model2d import unet_2d_shalow_baseline as umodel
+    from models import unet_2d_shalow_baseline as umodel
 
 # Set data input path # Get list of image files
 train_data_dir = hparams.input_dir + 'train'
@@ -20,8 +20,7 @@ label_identifier = 'label'
 image_fnlist = [f for f in sorted(os.listdir(train_data_dir)) if
               os.path.isfile(os.path.join(train_data_dir, f)) and label_identifier not in f]
 training_generator = ClassDataGenerator(image_fnlist, train_data_dir, n_channels=hparams.volume_depth,
-                                        batch_size= hparams.batch_size,perturb_slices=hparams.perturb_slices,
-                                        n_classes=hparams.num_tissues, attn_type=hparams.attn_type)
+                                        batch_size= hparams.batch_size, n_classes=hparams.num_tissues)
 
 valid_data_dir = hparams.input_dir + 'valid'
 
