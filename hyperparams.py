@@ -30,7 +30,7 @@ def create_hparams():
       num_tissues   = 4,
       # training
       batch_size     = 4, # num of patients
-      num_epochs     = 220,
+      num_epochs     = 250,
       augment_flag   = True,
 
       # Directories/Storage
