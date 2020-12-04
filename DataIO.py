@@ -109,6 +109,8 @@ def load_patient(fn_list, data_dir, pat_index=0, im_size=(160,160),n_channels=1,
         tmp = np.squeeze(lbvol[:, :, :, idx])  # 3D array
         if np.any(np.isnan(tmp)) or np.any(tmp < 0):
             tmp = np.zeros(tmp.shape, dtype=tmp.dtype)
+        if np.any(np.isnan(tmp)) or np.any(tmp < 0):
+            tmp = np.zeros(tmp.shape, dtype=tmp.dtype)
         tmp_split = keras.utils.to_categorical(tmp, num_classes=hparams.num_tissues)
         Y.append(tmp_split)
 
