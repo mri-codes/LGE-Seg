@@ -20,8 +20,6 @@ class ClassDataGenerator(keras.utils.Sequence):
         self.n_classes  = n_classes
         self.shuffle    = shuffle
         self.on_epoch_end()
-        self.attn_type = attn_type
-        self.perturb_slices = perturb_slices
 
     def __len__(self):
         'Denotes the number of batches per epoch'
